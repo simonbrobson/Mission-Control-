@@ -1,22 +1,60 @@
-export default function Equipment() {
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { supabase } from "@/lib/supabase";
+
+export default function Home() {
+
+  const [workOrders, setWorkOrders] = useState<any[]>([]);
+
+  useEffect(() => {
+
+    async function loadData() {
+
+      const { data, error } = await supabase
+
+        .from("work_orders")
+
+        .select("*");
+
+      if (!error) {
+
+        setWorkOrders(data || []);
+
+      }
+
+    }
+
+    loadData();
+
+  }, []);
 
   return (
 
     <div style={{ padding: 30 }}>
 
-      <h1>🏭 Equipment Register</h1>
+      <h1>🚨 Live Fleet Dashboard</h1>
 
-      <ul>
+      <h2>Work Orders</h2>
 
-        <li>Jackup Rig Atlas — Operational</li>
+      {workOrders.length === 0 ? (
 
-        <li>Haul Truck 17 — Maintenance</li>
+        <p>No work orders found</p>
 
-        <li>Crane 9 — Operational</li>
+      ) : (
 
-        <li>BOP Stack A — Critical</li>
+        workOrders.map((w) => (
 
-      </ul>
+          <div key={w.id} style={{ marginTop: 10 }}>
+
+            <strong>{w.title}</strong> — {w.status} — {w.priority}
+
+          </div>
+
+        ))
+
+      )}
 
     </div>
 
