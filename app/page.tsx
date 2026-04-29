@@ -1,18 +1,22 @@
-"use client";
-
-export default function Home() {
+export default function Equipment() {
 
   return (
 
     <div style={{ padding: 30 }}>
 
-      <h1>🚨 Fleet Control Dashboard</h1>
+      <h1>🏭 Equipment Register</h1>
 
-      <p>Assets Online: 8</p>
+      <ul>
 
-      <p>Overdue Work Orders: 2</p>
+        <li>Jackup Rig Atlas — Operational</li>
 
-      <p>Active Maintenance: 3</p>
+        <li>Haul Truck 17 — Maintenance</li>
+
+        <li>Crane 9 — Operational</li>
+
+        <li>BOP Stack A — Critical</li>
+
+      </ul>
 
     </div>
 
